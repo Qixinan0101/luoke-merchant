@@ -2,6 +2,18 @@
 洛克王国世界 · 远行商人数据抓取器
 从 onebiji.com 抓取实时数据（HTML 解析），输出为 JSON
 GitHub Actions 定时运行此脚本
+
+HTML 结构说明：
+  <div class="gitem">         ← 图片 + 限购
+    <img src="...">
+    <em>限购X</em>
+  </div>
+  <div class="sp-text">       ← 相邻 div，名字 + 价格
+    <p><em>商品名</em></p>
+    <div><em>价格：XXX</em></div>
+  </div>
+
+页面一次性包含所有轮次商品，按轮次顺序排列（每轮3件）
 """
 import requests
 import re
@@ -19,63 +31,62 @@ HEADERS = {
     "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
 }
 
+ROUND_TIMES = {1: (8, 12), 2: (12, 16), 3: (16, 20), 4: (20, 24)}
+ITEMS_PER_ROUND = 3
+
+
 def get_current_round():
-    """根据北京时间计算当前轮次"""
     now = datetime.now(BEIJING_TZ)
     hour = now.hour
-    if 8 <= hour < 12:
-        return 1
-    elif 12 <= hour < 16:
-        return 2
-    elif 16 <= hour < 20:
-        return 3
-    elif 20 <= hour < 24:
-        return 4
-    else:
-        return None  # 休息中
+    for rnd, (start, end) in ROUND_TIMES.items():
+        if start <= hour < end:
+            return rnd
+    return None
+
 
 def fetch_page():
-    """抓取 onebiji.com 页面"""
     resp = requests.get(SOURCE_URL, headers=HEADERS, timeout=30)
     resp.encoding = 'utf-8'
     return resp.text
 
-def parse_items(html):
+
+def parse_all_items(html):
     """
-    从 HTML 中提取所有商品。
-    onebiji.com 页面结构：数据在 div.gitem 中
-    格式：
-    <div class="gitem">
-      <div> <img src="..."> <em>限购X</em> </div>
-      <div class="sp-text">
-        <p><em>商品名</em></p>
-        <div><em>价格：XXX </em></div>
-      </div>
-    </div>
+    按位置解析所有商品。
+    找出每个 class="gitem" 的位置，向后取 700 字符，
+    从中提取图片/限购/名字/价格。
     """
     items = []
 
-    # 匹配每个 gitem 块
-    gitem_pattern = r'<div class="gitem">(.*?)</div>\s*</div>\s*</li>'
-    blocks = re.findall(gitem_pattern, html, re.DOTALL)
+    # 找出所有 "class=\"gitem\"" 的位置
+    positions = [m.start() for m in re.finditer(r'class="gitem"', html)]
 
-    for block in blocks:
-        # 商品名: <p><em>名称</em></p>
-        name_match = re.search(r'<p[^>]*><em>([^<]+)</em></p>', block)
-        if not name_match:
-            continue
-        name = name_match.group(1).strip()
+    for pos in positions:
+        # 向后取 700 字符作为上下文窗口
+        window = html[pos - 5:pos + 700]  # -5 确保 "<div " 被包含
 
-        # 价格: 价格：XXX
-        price_match = re.search(r'价格[：:]\s*(\S+)', block)
-        price = price_match.group(1).strip() if price_match else "?"
-
-        # 限购: <em>限购X</em>
-        limit_match = re.search(r'限购(\d+)', block)
+        # 提取限购: <em>限购X</em>（在 gitem div 内）
+        limit_match = re.search(r'限购(\d+)', window)
         limit = limit_match.group(1) if limit_match else "?"
 
-        # 图片
-        img_match = re.search(r'<img[^>]*src=["\']([^"\']+)["\']', block)
+        # 提取名字: sp-text 中的 <p><em>名称</em></p>
+        name_match = re.search(r'<p[^>]*><em>([^<]+)</em></p>', window)
+        if not name_match:
+            # 可能是模板占位符（空的 gitem）
+            if 'shopName' in window or 'shopimg' in window:
+                continue
+            name = None
+        else:
+            name = name_match.group(1).strip()
+            if not name or name == '':
+                continue  # 空名跳过
+
+        # 提取价格: 价格：XXX
+        price_match = re.search(r'价格[：:]\s*(\S+)', window)
+        price = price_match.group(1).strip() if price_match else "?"
+
+        # 提取图片
+        img_match = re.search(r'<img[^>]*src=["\']([^"\']+)["\']', window)
         image = img_match.group(1) if img_match else None
         if image and image.startswith('//'):
             image = 'https:' + image
@@ -94,31 +105,44 @@ def parse_items(html):
 
     return items
 
+
+def group_by_round(items):
+    rounds = {"1": [], "2": [], "3": [], "4": []}
+    for i, item in enumerate(items):
+        rnd = (i // ITEMS_PER_ROUND) + 1
+        if rnd <= 4:
+            item["round"] = rnd
+            rounds[str(rnd)].append(item)
+    return rounds
+
+
 def main():
     now_beijing = datetime.now(BEIJING_TZ)
-    print(f"[{now_beijing.strftime('%Y-%m-%d %H:%M:%S')}] 开始抓取远行商人数据...")
+    print(f"[{now_beijing.strftime('%Y-%m-%d %H:%M:%S')}] 开始抓取...")
     print(f"数据源: {SOURCE_URL}")
 
     current_round = get_current_round()
     status = "open" if current_round else "closed"
+    print(f"北京时间: {now_beijing.strftime('%H:%M')} | 状态: {status} | 当前第{current_round}轮")
 
     try:
         html = fetch_page()
-        print(f"页面抓取成功，长度: {len(html)} 字符")
+        print(f"页面: {len(html)} 字符")
 
-        items = parse_items(html)
-        print(f"解析到 {len(items)} 件商品:")
-        for item in items:
-            print(f"  - {item['name']} | {item['price']} | 限购{item['limit']}")
+        all_items = parse_all_items(html)
+        print(f"解析到 {len(all_items)} 件商品:")
 
-        # 组织数据
-        rounds_data = {"1": [], "2": [], "3": [], "4": []}
-        if current_round and items:
-            r_key = str(current_round)
-            # 给每个 item 标记轮次
-            for item in items:
-                item["round"] = current_round
-            rounds_data[r_key] = items
+        rounds_data = group_by_round(all_items)
+        for rnd in ["1", "2", "3", "4"]:
+            rd_items = rounds_data[rnd]
+            marker = ">>" if str(current_round) == rnd else "  "
+            if rd_items:
+                names = ", ".join(i["name"] for i in rd_items)
+                print(f"  {marker} 第{rnd}轮 ({len(rd_items)}件): {names}")
+            else:
+                print(f"  {marker} 第{rnd}轮: 无数据")
+
+        current_items = rounds_data.get(str(current_round), []) if current_round else []
 
         # 计算下次刷新
         round_hours = {1: 8, 2: 12, 3: 16, 4: 20}
@@ -126,7 +150,6 @@ def main():
             next_hour = round_hours[current_round + 1]
             next_refresh = now_beijing.replace(hour=next_hour, minute=0, second=0, microsecond=0)
         else:
-            # 次日 8 点
             next_refresh = now_beijing.replace(hour=8, minute=0, second=0, microsecond=0) + timedelta(days=1)
 
         result = {
@@ -138,29 +161,25 @@ def main():
             "nextRefreshBeijing": next_refresh.strftime("%Y-%m-%d %H:%M:%S"),
             "durationHours": 4,
             "merchantPosition": "",
-            "items": items if status == "open" else [],
+            "items": current_items,
             "rounds": rounds_data
         }
 
-        # 保存 JSON
         os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
-        print(f"\n数据已保存至 {OUTPUT_FILE}")
-        print(f"状态: {status} | 轮次: {current_round} | 商品: {len(items)}件")
+        print(f"\n已保存 {OUTPUT_FILE}")
+        print(f"当前: 第{current_round}轮 {len(current_items)}件 | 全部: {len(all_items)}件")
 
-        if len(items) == 0 and status == "open":
-            print("警告: 营业时间但未解析到商品，可能是页面结构变化")
-            # 仍然保存但标记
-        elif status == "closed":
-            print("远行商人当前休息中 (00:00-08:00)")
+        if len(all_items) == 0 and status == "open":
+            print("警告: 营业时间但未解析到商品")
 
     except Exception as e:
-        print(f"抓取失败: {e}")
-        # 保持已有数据
-        if os.path.exists(OUTPUT_FILE):
-            print("保留已有数据文件")
-        raise  # 让 GitHub Actions 感知失败
+        print(f"失败: {e}")
+        import traceback
+        traceback.print_exc()
+        raise
+
 
 if __name__ == "__main__":
     main()
