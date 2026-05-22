@@ -1,0 +1,122 @@
+{
+  "sourceUrl": "https://www.onebiji.com/hykb_tools/comm/lkwgmerchant/preview.php?id=1&immgj=0",
+  "fetchedAt": "2026-05-21T17:52:44.908Z",
+  "timezone": "Asia/Shanghai",
+  "status": "closed",
+  "round": null,
+  "startedAtBeijing": null,
+  "nextRefreshBeijing": "2026-05-22 08:00:00",
+  "durationHours": 4,
+  "merchantPosition": "",
+  "items": [],
+  "rounds": {
+    "1": [
+      {
+        "name": "榛戞櫠鐞夌拑",
+        "price": "1000",
+        "priceRaw": "1000",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/b/bc/khe20j8lwkt1bg9g4b0gbnsff48g93c.png/100px-100628.png",
+        "category": "鐐奸噾鏉愭枡",
+        "description": "",
+        "rounds": [1]
+      },
+      {
+        "name": "铏郴琛€鑴夌鑽?,
+        "price": "160000",
+        "priceRaw": "16w",
+        "limit": "3",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/f/fa/kcywd1p2ikx394lixtb73roqc9fmx4a.png/100px-Xuemai_chong.png",
+        "category": "琛€鑴変慨鏀归亾鍏?,
+        "description": "",
+        "rounds": [1]
+      }
+    ],
+    "2": [
+      {
+        "name": "榄斿姏鏋?,
+        "price": "6000",
+        "priceRaw": "6000",
+        "limit": "20",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
+        "category": "绮剧伒鍠傚吇鏉愭枡",
+        "description": "",
+        "rounds": [2]
+      },
+      {
+        "name": "骞荤郴绮夊皹",
+        "price": "500",
+        "priceRaw": "500",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/2/24/sgt0lc5llwfvlcmjhr1awhwq6st35fj.png/100px-100139.png",
+        "category": "鐐奸噾鏉愭枡",
+        "description": "",
+        "rounds": [2]
+      }
+    ],
+    "3": [
+      {
+        "name": "榛戞櫠鐞夌拑",
+        "price": "1000",
+        "priceRaw": "1000",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/b/bc/khe20j8lwkt1bg9g4b0gbnsff48g93c.png/100px-100628.png",
+        "category": "鐐奸噾鏉愭枡",
+        "description": "",
+        "rounds": [3]
+      },
+      {
+        "name": "绱幉鍒氱帀",
+        "price": "1000",
+        "priceRaw": "1000",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/9/9c/s7ej54xr4magmv0h0zag15jah6avwlc.png/100px-100682.png",
+        "category": "鐐奸噾鏉愭枡",
+        "description": "",
+        "rounds": [3]
+      },
+      {
+        "name": "鏈烘琛€鑴夌鑽?,
+        "price": "160000",
+        "priceRaw": "16w",
+        "limit": "3",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/5/56/12jc1mzlz7nhgnterqdk6bgm6rofibn.png/100px-Xuemai_gang.png",
+        "category": "琛€鑴変慨鏀归亾鍏?,
+        "description": "",
+        "rounds": [3]
+      }
+    ],
+    "4": [
+      {
+        "name": "榛戞櫠鐞夌拑",
+        "price": "1000",
+        "priceRaw": "1000",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/b/bc/khe20j8lwkt1bg9g4b0gbnsff48g93c.png/100px-100628.png",
+        "category": "鐐奸噾鏉愭枡",
+        "description": "",
+        "rounds": [4]
+      },
+      {
+        "name": "榄斿姏鏋?,
+        "price": "6000",
+        "priceRaw": "6000",
+        "limit": "20",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
+        "category": "绮剧伒鍠傚吇鏉愭枡",
+        "description": "",
+        "rounds": [4]
+      },
+      {
+        "name": "鍐扮郴绮夊皹",
+        "price": "500",
+        "priceRaw": "500",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/a/a9/no0rhm0wky3e406wni3ef13z6zvfxw1.png/100px-100130.png",
+        "category": "鐐奸噾鏉愭枡",
+        "description": "",
+        "rounds": [4]
+      }
+    ]
+  }
+}
