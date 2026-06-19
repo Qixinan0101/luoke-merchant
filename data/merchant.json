@@ -1,12 +1,12 @@
 {
   "sourceUrl": "https://www.onebiji.com/hykb_tools/comm/lkwgmerchant/preview.php?id=1&immgj=0",
   "sourceName": "好游快爆远行商人工具",
-  "fetchedAt": "2026-06-19T13:00:38.027069+00:00",
+  "fetchedAt": "2026-06-19T19:17:17.784529+00:00",
   "timezone": "Asia/Shanghai",
-  "status": "open",
-  "round": 4,
-  "roundLabel": "20:00-24:00",
-  "nextRefreshBeijing": "2026-06-20 08:00:00",
+  "status": "closed",
+  "round": null,
+  "roundLabel": "休市中",
+  "nextRefreshBeijing": "2026-06-21 08:00:00",
   "rounds": {
     "1": [
       {
@@ -98,51 +98,5 @@
       }
     ]
   },
-  "items": [
-    {
-      "name": "光合球",
-      "price": "3000",
-      "limit": "200",
-      "image": "https://patchwiki.biligame.com/images/rocom/thumb/d/d5/i0k2vx3nsjzsbbpfzfbwf3dlin3ixn0.png/100px-Img_guangheqiu.png",
-      "category": "特制咕噜球",
-      "description": "更适合用来捕捉草系、光系精灵。 青草味道的球。",
-      "timestamp": 1781884800
-    },
-    {
-      "name": "残缺魔镜",
-      "price": "48w",
-      "limit": "1",
-      "image": "https://patchwiki.biligame.com/images/rocom/thumb/1/10/nssw03fprximwkgzjqdaq8r8pq3q3le.png/100px-100716.png",
-      "category": "性格影响修改道具",
-      "description": "可以修正性格带来的负面影响。 “我不知道，我将消除自己。”",
-      "timestamp": 1782057600
-    },
-    {
-      "name": "适格钥匙",
-      "price": "32w",
-      "limit": "1",
-      "image": "https://patchwiki.biligame.com/images/rocom/thumb/1/11/6l0tqz9gytrn8r10gk5bgcj4rxnfx57.png/100px-100714.png",
-      "category": "个体资质属性修改道具",
-      "description": "可以修改精灵的个体资质种类，或激活一条初始值为8的新资质。",
-      "timestamp": 1782057600
-    },
-    {
-      "name": "能力钥匙",
-      "price": "16w",
-      "limit": "6",
-      "image": "https://patchwiki.biligame.com/images/rocom/thumb/2/2d/749ek9zbh79fvll7f5vtpxa33dz3mze.png/100px-100009.png",
-      "category": "个体资质增强道具",
-      "description": "对初始个体资质小于10的精灵使用，使该项个体资质的初始值增加1。",
-      "timestamp": 1782057600
-    },
-    {
-      "name": "魔力果",
-      "price": "6000",
-      "limit": "20",
-      "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
-      "category": "精灵喂养材料",
-      "description": "不太常见的果实，精灵食用后获得能力提升。 “精灵食物营养科的研究总是不见进展，这么多年了精灵还在吃果子。”",
-      "timestamp": 1781884800
-    }
-  ]
+  "items": []
 }
