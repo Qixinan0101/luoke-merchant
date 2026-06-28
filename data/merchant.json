@@ -1,7 +1,7 @@
 {
   "sourceUrl": "https://www.onebiji.com/hykb_tools/comm/lkwgmerchant/preview.php?id=1&immgj=0",
   "sourceName": "好游快爆远行商人工具",
-  "fetchedAt": "2026-06-28T04:00:23.029502+00:00",
+  "fetchedAt": "2026-06-28T07:57:58.262985+00:00",
   "timezone": "Asia/Shanghai",
   "status": "open",
   "round": 2,
@@ -19,8 +19,46 @@
         "timestamp": 1782619200
       }
     ],
-    "2": [],
-    "3": [],
+    "2": [
+      {
+        "name": "魔力果",
+        "price": "6000",
+        "limit": "20",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
+        "category": "精灵喂养材料",
+        "description": "不太常见的果实，精灵食用后获得能力提升。 “精灵食物营养科的研究总是不见进展，这么多年了精灵还在吃果子。”",
+        "timestamp": 1782633600
+      },
+      {
+        "name": "魔力果",
+        "price": "6000",
+        "limit": "20",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
+        "category": "精灵喂养材料",
+        "description": "不太常见的果实，精灵食用后获得能力提升。 “精灵食物营养科的研究总是不见进展，这么多年了精灵还在吃果子。”",
+        "timestamp": 1782633600
+      },
+      {
+        "name": "普通粉尘",
+        "price": "500",
+        "limit": "100",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/f/f6/ls7hsygs9epizddf1xo4q9b2iu1dduu.png/100px-100127.png",
+        "category": "炼金材料",
+        "description": "常见的炼金材料，蕴含少量普通系魔法，是合成技能石的主要触媒。",
+        "timestamp": 1782633600
+      }
+    ],
+    "3": [
+      {
+        "name": "美妙球",
+        "price": "3000",
+        "limit": "200",
+        "image": "https://patchwiki.biligame.com/images/rocom/thumb/b/b0/6ywvdkywqprqvws7m4ogeldp9y19swt.png/100px-Img_haihaiqiu.png",
+        "category": "特制咕噜球",
+        "description": "更适合用来捕捉萌系、普通系的精灵。 活泼的球，开心的精灵会被吸引。",
+        "timestamp": 1782648000
+      }
+    ],
     "4": [
       {
         "name": "残缺魔镜",
@@ -51,5 +89,33 @@
       }
     ]
   },
-  "items": []
+  "items": [
+    {
+      "name": "魔力果",
+      "price": "6000",
+      "limit": "20",
+      "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
+      "category": "精灵喂养材料",
+      "description": "不太常见的果实，精灵食用后获得能力提升。 “精灵食物营养科的研究总是不见进展，这么多年了精灵还在吃果子。”",
+      "timestamp": 1782633600
+    },
+    {
+      "name": "魔力果",
+      "price": "6000",
+      "limit": "20",
+      "image": "https://patchwiki.biligame.com/images/rocom/thumb/c/c6/5qe6rcdtfxe1gsrvgj3lrn033athx9p.png/100px-100668.png",
+      "category": "精灵喂养材料",
+      "description": "不太常见的果实，精灵食用后获得能力提升。 “精灵食物营养科的研究总是不见进展，这么多年了精灵还在吃果子。”",
+      "timestamp": 1782633600
+    },
+    {
+      "name": "普通粉尘",
+      "price": "500",
+      "limit": "100",
+      "image": "https://patchwiki.biligame.com/images/rocom/thumb/f/f6/ls7hsygs9epizddf1xo4q9b2iu1dduu.png/100px-100127.png",
+      "category": "炼金材料",
+      "description": "常见的炼金材料，蕴含少量普通系魔法，是合成技能石的主要触媒。",
+      "timestamp": 1782633600
+    }
+  ]
 }
